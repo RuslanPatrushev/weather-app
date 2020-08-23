@@ -1,0 +1,25 @@
+<div class="modal-header bg-info text-white">
+  <h4 class="modal-title pull-left">Поиск города</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form class="font-weight-bold text-secondary">
+    <div class="form-group">
+      <label for="city">Город</label>
+      <input
+        type="text"
+        class="form-control"
+        id="city"
+        name="inputCity"
+        [(ngModel)]="inputCity"
+      >
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" (click)="confirm()">
+    Поиск
+  </button>
+</div>

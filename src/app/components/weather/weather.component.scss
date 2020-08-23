@@ -1,0 +1,66 @@
+$screen-sm-min: 576px;
+$screen-md-min: 768px;
+@mixin sm {
+  @media (min-width: #{$screen-sm-min}) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (min-width: #{$screen-md-min}) {
+    @content;
+  }
+}
+
+.m-desc {
+  margin-top: -20px;
+  @include md {
+    margin-top: -40px;
+  }
+}
+
+.h-min {
+  height: min-content;
+}
+
+.weather-img {
+  height: 100px;
+  @include md {
+    height: 200px;
+  }
+}
+
+.weather-temp {
+  font-size: 3rem;
+  @include md {
+    font-size: 6rem;
+  }
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.text-auto {
+  font-size: 0.80rem;
+  @include sm {
+    font-size: 1rem;
+  }
+}
+
+.px-12px {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.btn-outline-light {
+  color: white !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.btn-outline-light:not(:disabled):not(.disabled):active,
+.btn-outline-light:not(:disabled):not(.disabled).active,
+.show > .btn-outline-light.dropdown-toggle {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+}
