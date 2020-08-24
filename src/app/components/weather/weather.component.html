@@ -3,8 +3,7 @@
 
     <div class="d-flex row mt-0 mt-sm-5 pt-3 mx-0 align-items-center">
       <div class="col pl-0 h3 font-weight-normal">
-        <div *ngIf="weatherData && !errorCity; else elseBlock">{{weatherData.name}}</div>
-        <ng-template #elseBlock>Ошибка</ng-template>
+        <div>{{city}}</div>
       </div>
       <div class="col d-flex justify-content-end text-white-50 h-min">
         &deg;
@@ -28,42 +27,44 @@
         Мое местоположение
       </div>
     </div>
-
-    <div *ngIf="weatherData && !errorCity"
-         class="d-flex justify-content-center col text-center align-items-center mb-5 pb-5">
-      <div class="h-min">
-        <div class="row justify-content-center align-items-center mx-0">
-          <img class="weather-img" src="http://openweathermap.org/img/wn/{{weatherData.weather[0].icon}}@2x.png">
-          <h1 class="font-weight-light weather-temp">{{weatherData.main.temp | number:'1.0-0'}}&deg;</h1>
+    <div *ngIf="weatherData && !errorCity ; then thenBlock"></div>
+    <ng-template #thenBlock>
+      <div
+        class="d-flex justify-content-center col text-center align-items-center mb-5 pb-5">
+        <div class="h-min">
+          <div class="row justify-content-center align-items-center mx-0">
+            <img class="weather-img" src="http://openweathermap.org/img/wn/{{weatherData.weather[0].icon}}@2x.png">
+            <h1 class="font-weight-light weather-temp">{{weatherData.main.temp | number:'1.0-0'}}&deg;</h1>
+          </div>
+          <div class="font-weight-light m-desc">{{weatherData.weather[0].description | descriptionFormat}}</div>
         </div>
-        <div class="font-weight-light m-desc">{{weatherData.weather[0].description | descriptionFormat}}</div>
-      </div>
-    </div>
-
-    <div *ngIf="weatherData && !errorCity" class="row d-flex justify-content-md-between mb-0 pb-3 mx-0 mb-sm-5">
-
-
-      <div class="col-8 col-md-auto flex-column">
-        <p class="text-white-50 m-0">Ветер </p>
-        <p>{{weatherData.wind.speed}}м/с, {{weatherData.wind.description}}</p>
-      </div>
-      <div class="col-4 col-md-auto flex-column">
-        <p class="text-white-50 m-0">Давление </p>
-        <p>{{weatherData.main.pressure}}</p>
       </div>
 
+      <div class="row d-flex justify-content-md-between mb-0 pb-3 mx-0 mb-sm-5">
 
-      <div class="col-8 col-md-auto flex-column">
-        <p class="text-white-50 m-0">Влажность </p>
-        <p>{{weatherData.main.humidity}}%</p>
+
+        <div class="col-8 col-md-auto flex-column">
+          <p class="text-white-50 m-0">Ветер </p>
+          <p>{{weatherData.wind.speed}}м/с, {{weatherData.wind.description}}</p>
+        </div>
+        <div class="col-4 col-md-auto flex-column">
+          <p class="text-white-50 m-0">Давление </p>
+          <p>{{weatherData.main.pressure}}</p>
+        </div>
+
+
+        <div class="col-8 col-md-auto flex-column">
+          <p class="text-white-50 m-0">Влажность </p>
+          <p>{{weatherData.main.humidity}}%</p>
+        </div>
+        <div class="col-4 col-md-auto flex-column">
+          <p class="text-white-50 m-0 ">Облачность </p>
+          <p class="">{{weatherData.clouds.all}}% </p>
+        </div>
+
+
       </div>
-      <div class="col-4 col-md-auto flex-column">
-        <p class="text-white-50 m-0 ">Облачность </p>
-        <p class="">{{weatherData.clouds.all}}% </p>
-      </div>
-
-
-    </div>
+    </ng-template>
     <div *ngIf="errorCity">
       <div>Город с названием "{{city}}" не найден. Проверьте правильность введенных данных.</div>
     </div>
